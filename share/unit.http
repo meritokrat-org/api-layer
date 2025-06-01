@@ -1,0 +1,18 @@
+# curl -X 'GET'
+#  'https://api.meritokrat.org:8443/api/units?page=1&category%5B%5D=K&category%5B%5D=M&category%5B%5D=T&category%5B%5D=C&category%5B%5D=X&category%5B%5D=B&path.id=8201'
+#  -H 'accept: application/ld+json'
+###
+GET https://api.meritokrat.org:8443/api/administrative_units?
+    category[]=K&
+    category[]=M&
+    category[]=T&
+    category[]=C&
+    category[]=X&
+    category[]=B&
+    path.id=8201
+accept: application/json
+
+###
+GET https://api.meritokrat.org:8443/api/administrative_units?page=1&level=1
+accept: application/json
+

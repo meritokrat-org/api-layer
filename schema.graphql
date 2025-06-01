@@ -1,0 +1,274 @@
+# This file was generated. Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+"A node, according to the Relay specification."
+interface Node {
+    "The id of this node."
+    id: ID!
+}
+
+type Katottg implements Node {
+    _id: Int!
+    category: CategoryEnum!
+    id: ID!
+    level1: String
+    level2: String
+    level3: String
+    level4: String
+    level5: String
+    name: String!
+}
+
+"Cursor connection for Katottg."
+type KatottgCursorConnection {
+    edges: [KatottgEdge]
+    pageInfo: KatottgPageInfo!
+    totalCount: Int!
+}
+
+"Edge of Katottg."
+type KatottgEdge {
+    cursor: String!
+    node: Katottg
+}
+
+"Information about the current page."
+type KatottgPageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+}
+
+type Mutation {
+    "Creates a Katottg."
+    createKatottg(input: createKatottgInput!): createKatottgPayload
+    "Creates a Unit."
+    createUnit(input: createUnitInput!): createUnitPayload
+    "Deletes a Katottg."
+    deleteKatottg(input: deleteKatottgInput!): deleteKatottgPayload
+    "Deletes a Unit."
+    deleteUnit(input: deleteUnitInput!): deleteUnitPayload
+    "Updates a Katottg."
+    updateKatottg(input: updateKatottgInput!): updateKatottgPayload
+    "Updates a Unit."
+    updateUnit(input: updateUnitInput!): updateUnitPayload
+}
+
+type Query {
+    katottg(id: ID!): Katottg
+    katottgs(
+        "Returns the elements in the list that come after the specified cursor."
+        after: String,
+        "Returns the elements in the list that come before the specified cursor."
+        before: String,
+        "Returns the first n elements from the list."
+        first: Int,
+        "Returns the last n elements from the list."
+        last: Int
+    ): KatottgCursorConnection
+    node(id: ID!): Node
+    unit(id: ID!): Unit
+    units(
+        "Returns the elements in the list that come after the specified cursor."
+        after: String,
+        "Returns the elements in the list that come before the specified cursor."
+        before: String,
+        category: String,
+        category_list: [String],
+        code: String,
+        code_list: [String],
+        "Returns the first n elements from the list."
+        first: Int,
+        "Returns the last n elements from the list."
+        last: Int,
+        level: Int,
+        level_list: [Int],
+        name: String,
+        parent_id: Int,
+        parent_id_list: [Int]
+    ): UnitCursorConnection
+}
+
+type Unit implements Node {
+    _id: Int!
+    category: CategoryEnum!
+    children(
+        "Returns the elements in the list that come after the specified cursor."
+        after: String,
+        "Returns the elements in the list that come before the specified cursor."
+        before: String,
+        category: String,
+        category_list: [String],
+        code: String,
+        code_list: [String],
+        "Returns the first n elements from the list."
+        first: Int,
+        "Returns the last n elements from the list."
+        last: Int,
+        level: Int,
+        level_list: [Int],
+        name: String,
+        parent_id: Int,
+        parent_id_list: [Int]
+    ): UnitCursorConnection
+    code: String!
+    id: ID!
+    level: Int!
+    name: String!
+    parent: Unit
+    path(
+        "Returns the elements in the list that come after the specified cursor."
+        after: String,
+        "Returns the elements in the list that come before the specified cursor."
+        before: String,
+        category: String,
+        category_list: [String],
+        code: String,
+        code_list: [String],
+        "Returns the first n elements from the list."
+        first: Int,
+        "Returns the last n elements from the list."
+        last: Int,
+        level: Int,
+        level_list: [Int],
+        name: String,
+        parent_id: Int,
+        parent_id_list: [Int]
+    ): UnitCursorConnection
+}
+
+"Cursor connection for Unit."
+type UnitCursorConnection {
+    edges: [UnitEdge]
+    pageInfo: UnitPageInfo!
+    totalCount: Int!
+}
+
+"Edge of Unit."
+type UnitEdge {
+    cursor: String!
+    node: Unit
+}
+
+"Information about the current page."
+type UnitPageInfo {
+    endCursor: String
+    hasNextPage: Boolean!
+    hasPreviousPage: Boolean!
+    startCursor: String
+}
+
+"Creates a Katottg."
+type createKatottgPayload {
+    clientMutationId: String
+    katottg: Katottg
+}
+
+"Creates a Unit."
+type createUnitPayload {
+    clientMutationId: String
+    unit: Unit
+}
+
+"Deletes a Katottg."
+type deleteKatottgPayload {
+    clientMutationId: String
+    katottg: Katottg
+}
+
+"Deletes a Unit."
+type deleteUnitPayload {
+    clientMutationId: String
+    unit: Unit
+}
+
+"Updates a Katottg."
+type updateKatottgPayload {
+    clientMutationId: String
+    katottg: Katottg
+}
+
+"Updates a Unit."
+type updateUnitPayload {
+    clientMutationId: String
+    unit: Unit
+}
+
+enum CategoryEnum {
+    City
+    CityDistrict
+    CityWithSpecialStatus
+    Community
+    District
+    Region
+    Settlement
+    UrbanTypeSettlement
+    Village
+}
+
+"Creates a Katottg."
+input createKatottgInput {
+    category: CategoryEnum!
+    clientMutationId: String
+    level1: String
+    level2: String
+    level3: String
+    level4: String
+    level5: String
+    name: String!
+}
+
+"Creates a Unit."
+input createUnitInput {
+    category: CategoryEnum!
+    children: [String]
+    clientMutationId: String
+    code: String!
+    level: Int!
+    name: String!
+    parent: String
+    path: [String]
+}
+
+"Deletes a Katottg."
+input deleteKatottgInput {
+    clientMutationId: String
+    id: ID!
+}
+
+"Deletes a Unit."
+input deleteUnitInput {
+    clientMutationId: String
+    id: ID!
+}
+
+"Updates a Katottg."
+input updateKatottgInput {
+    category: CategoryEnum
+    clientMutationId: String
+    id: ID!
+    level1: String
+    level2: String
+    level3: String
+    level4: String
+    level5: String
+    name: String
+}
+
+"Updates a Unit."
+input updateUnitInput {
+    category: CategoryEnum
+    children: [String]
+    clientMutationId: String
+    code: String
+    id: ID!
+    level: Int
+    name: String
+    parent: String
+    path: [String]
+}
